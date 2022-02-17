@@ -49,7 +49,7 @@ async function startGame() {
     var gameid = txn_receipt.logs[0].data.slice(2,66);
     closeGame_data = '0x2d6ef310' + gameid;
     var URL_txn = 'https://snowtrace.io/tx/' + (txnhash);
-    bot.sendMessage(803525294,`Game Started\n${URL_txn}`);
+    bot.sendMessage(<YOUR ID>,`Game Started\n${URL_txn}`);
 }
 
 async function closeGame(data) {
@@ -67,7 +67,7 @@ async function closeGame(data) {
     var txn_receipt = await providerAVAX.waitForTransaction(String(txnhash));
     console.log(txn_receipt);
     var URL_txn = 'https://snowtrace.io/tx/' + (txnhash);
-    bot.sendMessage(803525294,`Game Closed\n${URL_txn}`);
+    bot.sendMessage(<YOUR ID>,`Game Closed\n${URL_txn}`);
 }
 
 async function getWalletBalance() {
@@ -160,7 +160,7 @@ async function displayBalance() {
     var USDCbalance = Number(USDC_balance) / 10**6;
     var TUSbalance = Number(TUS_balance) / 10**18;
     var CRAbalance = Number(CRA_balance) / 10**18;
-    bot.sendMessage(803525294,`USDC Balance:${USDCbalance}\nTUS Balance:${TUSbalance}\nCRA Balance:${CRAbalance}`).catch(error => console.log(error));
+    bot.sendMessage(<YOUR ID>,`USDC Balance:${USDCbalance}\nTUS Balance:${TUSbalance}\nCRA Balance:${CRAbalance}`).catch(error => console.log(error));
 }
 /*
 async function deposit_JOE() {
