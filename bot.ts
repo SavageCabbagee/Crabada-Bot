@@ -169,22 +169,30 @@ bot.on('/start', (msg) => {
 });
 
 bot.on('/swapTUS', (msg) => {
-    swapforGas();
-    displayBalance()
+    if (msg.from.username == 'eD_cabbages') {
+        swapforGas();
+        displayBalance();
+    }
 })
 
 bot.on('/swapCRA', (msg) => {
-    swapCRA();
-    displayBalance()
+    if (msg.from.username == 'eD_cabbages') {
+        swapCRA();
+        displayBalance();
+    }
 })
 
 bot.on('/swapgas', (msg) => {
-    swapTUS();
-    displayBalance()
+    if (msg.from.username == 'eD_cabbages') {
+        swapTUS();
+        displayBalance();
+    }
 })
 
 bot.on('/balance', (msg) => {
-    displayBalance();
+    if (msg.from.username == 'eD_cabbages') {
+        displayBalance();
+    }
 })
 
 bot.start();
