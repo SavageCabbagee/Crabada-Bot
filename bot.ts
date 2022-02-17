@@ -155,7 +155,6 @@ async function deposit_JOE() {
 */
 
 const bot = new TeleBot(process.env.telebot);
-false
 bot.on('/start', (msg) => {
     if (started == false) {
         startGame();
