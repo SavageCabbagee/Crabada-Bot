@@ -175,10 +175,10 @@ bot.on('/start', (msg) => {
         startGame();
         var timer1 = setInterval(() => {
         closeGame(closeGame_data)
-        }, 14400000 ); 
+        }, 14460000 ); 
         var timer2 = setInterval(() => {
         startGame()
-        }, 14460000 );
+        }, 14520000 );
         started = true;
     }
 });
