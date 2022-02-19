@@ -49,7 +49,7 @@ async function startGame() {
     var gameid = txn_receipt.logs[0].data.slice(2,66);
     closeGame_data = '0x2d6ef310' + gameid;
     var URL_txn = 'https://snowtrace.io/tx/' + (txnhash);
-    bot.sendMessage(<YOUR ID>,`Game Started\n${URL_txn}`);
+    bot.sendMessage(<YOUR_ID>,`Game Started\n${URL_txn}`);
 }
 
 async function closeGame(data) {
@@ -64,10 +64,9 @@ async function closeGame(data) {
     console.log(txn);
     var txnhash = txn.hash;
     console.log(txnhash);
-    var txn_receipt = await providerAVAX.waitForTransaction(String(txnhash));
+    var txn_receipt = await providerAVAX.waitForTransaction(String(txnhash)).then(onFulfilled => startGame());
     console.log(txn_receipt);
-    var URL_txn = 'https://snowtrace.io/tx/' + (txnhash);
-    bot.sendMessage(<YOUR ID>,`Game Closed\n${URL_txn}`);
+    bot.sendMessage(<YOUR_ID>,`Game Closed\n${URL_txn}`);
 }
 
 async function getWalletBalance() {
@@ -160,7 +159,15 @@ async function displayBalance() {
     var USDCbalance = Number(USDC_balance) / 10**6;
     var TUSbalance = Number(TUS_balance) / 10**18;
     var CRAbalance = Number(CRA_balance) / 10**18;
-    bot.sendMessage(<YOUR ID>,`USDC Balance:${USDCbalance}\nTUS Balance:${TUSbalance}\nCRA Balance:${CRAbalance}`).catch(error => console.log(error));
+    bot.sendMessage(<YOUR_ID>,`USDC Balance:${USDCbalance}\nTUS Balance:${TUSbalance}\nCRA Balance:${CRAbalance}`).catch(error => console.log(error));
+}
+
+async function close_startGame() {
+    try {
+        await closeGame(closeGame_data);
+      } catch (e) {
+        await close_startGame();
+      }
 }
 /*
 async function deposit_JOE() {
@@ -174,11 +181,9 @@ bot.on('/start', (msg) => {
     if (started == false) {
         startGame();
         var timer1 = setInterval(() => {
-        closeGame(closeGame_data)
-        }, 14460000 ); 
-        var timer2 = setInterval(() => {
-        startGame()
-        }, 14520000 );
+        close_startGame()
+        }, 14450000 ); 
+        
         started = true;
     }
 });
