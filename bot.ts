@@ -66,6 +66,7 @@ async function closeGame(data) {
     console.log(txnhash);
     var txn_receipt = await providerAVAX.waitForTransaction(String(txnhash)).then(onFulfilled => startGame());
     console.log(txn_receipt);
+    var URL_txn = 'https://snowtrace.io/tx/' + (txnhash);
     bot.sendMessage(<YOUR_ID>,`Game Closed\n${URL_txn}`);
 }
 
