@@ -23,7 +23,7 @@ async function startGame() {
         value: 0,
         from: My_Address,
     };
-}
+
 ```
 
 2. Create a .env file and fill in your private key and telebot API from BotFather
